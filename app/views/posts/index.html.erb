@@ -1,0 +1,41 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <th>id</th>
+      <th>Автор</th>
+      <th>Название</th>
+      <th>Дата изменения</th>
+    </tr>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= post.id %>
+        </td>
+        <td>
+          <%= post.author %>
+        </td>
+        <td>
+          <%= post.title %>
+        </td>
+        <td>
+          <%= post.updated_at %>
+        </td>
+        <td>
+          <%= link_to "Редактировать", edit_post_path(post) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to "Предыдущая", posts_path(page: @page - 1) %>
+  |
+  <%= link_to "Следующая", posts_path(page: @page + 1) %>
+</div>
+
+<%= link_to "New Article", new_post_path %>

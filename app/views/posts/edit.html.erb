@@ -1,0 +1,42 @@
+<h1>Editing post</h1>
+
+<%# <%= render "form", post: @post %> %>
+<%= form_with(model: @post) do |form| %>
+  <% if @post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% @post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, "Название статьи", style: "display: block" %>
+    <%= form.text_field :title, :readonly => true %>
+  </div>
+
+  <div>
+    <%= form.label :content, "Текст статьи", style: "display: block" %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.label :author, "Автор", style: "display: block" %>
+    <%= form.text_field :author, :readonly => true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this post", @post %> |
+  <%= link_to "Back to posts", posts_path %>
+</div>
